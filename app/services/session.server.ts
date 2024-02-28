@@ -1,27 +1,23 @@
-import { type AppLoadContext, type Session, createCookieSessionStorage } from '@vercel/remix';
+import { type Session, createCookieSessionStorage } from '@vercel/remix';
 
 import { type SessionData } from '~/services/session';
 
-function getSessionSecret(context: AppLoadContext) {
-  return context.env?.SESSION_SECRET ?? process.env.SESSION_SECRET;
-}
-
-function getSessionStorage(context: AppLoadContext) {
+function getSessionStorage() {
   return createCookieSessionStorage<SessionData>({
     cookie: {
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
-      secrets: [getSessionSecret(context)],
+      secrets: [process.env.SESSION_SECRET],
       secure: import.meta.env.PROD,
     },
   });
 }
 
-export function getSession(context: AppLoadContext, request: Request) {
-  return getSessionStorage(context).getSession(request.headers.get('Cookie'));
+export function getSession(request: Request) {
+  return getSessionStorage().getSession(request.headers.get('Cookie'));
 }
 
-export function commitSession(context: AppLoadContext, session: Session<SessionData>) {
-  return getSessionStorage(context).commitSession(session);
+export function commitSession(session: Session<SessionData>) {
+  return getSessionStorage().commitSession(session);
 }

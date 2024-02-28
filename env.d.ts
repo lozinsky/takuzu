@@ -9,12 +9,4 @@ declare global {
   }
 }
 
-declare module '@vercel/remix' {
-  interface AppLoadContext {
-    env?: {
-      readonly SESSION_SECRET: string;
-    };
-  }
-}
-
 export {};

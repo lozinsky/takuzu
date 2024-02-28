@@ -13,9 +13,9 @@ import { getSession } from '~/services/session.server';
 import { getErrorResponse } from '~/shared/http';
 import { Random, shuffle } from '~/shared/random';
 
-export async function loader({ context, request }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   try {
-    const session = await getSession(context, request);
+    const session = await getSession(request);
     const game = getGame(session);
     const random = Random.create();
 

@@ -15,9 +15,9 @@ import { Random } from '~/shared/random';
 
 import { GameActionsContent, GameBoardContent, GameTipContent } from './components';
 
-export async function loader({ context, params, request }: LoaderFunctionArgs) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   try {
-    const session = await getSession(context, request);
+    const session = await getSession(request);
     const random = Random.create();
 
     setGame(session, { board: parseBoard(expectToBeDefined(params.board)) });
@@ -26,7 +26,7 @@ export async function loader({ context, params, request }: LoaderFunctionArgs) {
       { seed: random.seed },
       {
         headers: {
-          'Set-Cookie': await commitSession(context, session),
+          'Set-Cookie': await commitSession(session),
         },
       },
     );

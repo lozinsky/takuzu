@@ -20,9 +20,9 @@ import { getErrorResponse } from '~/shared/http';
 
 import { MESSAGE_ID_BY_APPEARANCE, MESSAGE_RAW_BY_LOCALE } from './constants';
 
-export async function loader({ context, request }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   try {
-    const session = await getSession(context, request);
+    const session = await getSession(request);
     const appearance = getAppearance(session);
     const locale = getLocale(session, request.headers);
 
@@ -32,16 +32,16 @@ export async function loader({ context, request }: LoaderFunctionArgs) {
   }
 }
 
-export async function action({ context, request }: ActionFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   try {
-    const [session, formData] = await Promise.all([getSession(context, request), request.formData()]);
+    const [session, formData] = await Promise.all([getSession(request), request.formData()]);
 
     setAppearance(session, expectToSatisfy(formData.get('appearance'), isAppearance));
     setLocale(session, expectToSatisfy(formData.get('locale'), isLocale));
 
     return redirect(request.url, {
       headers: {
-        'Set-Cookie': await commitSession(context, session),
+        'Set-Cookie': await commitSession(session),
       },
     });
   } catch (error) {

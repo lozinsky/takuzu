@@ -15,9 +15,9 @@ import { getErrorResponse } from '~/shared/http';
 
 import root from './root.css?url';
 
-export async function loader({ context, request }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   try {
-    const session = await getSession(context, request);
+    const session = await getSession(request);
     const appearance = getAppearance(session);
     const intl = getIntl(session, request.headers);
     const title = intl.formatMessage({ id: 'metaTitle' });
