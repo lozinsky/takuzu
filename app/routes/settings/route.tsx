@@ -1,5 +1,5 @@
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/node';
 import { Form, useLoaderData, useSubmit } from '@remix-run/react';
+import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@vercel/remix';
 import { type FormEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 

@@ -1,11 +1,5 @@
-import {
-  type LinkDescriptor,
-  type LoaderFunctionArgs,
-  type MetaArgs,
-  type MetaDescriptor,
-  json,
-} from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
+import { type LinkDescriptor, type LoaderFunctionArgs, type MetaArgs, type MetaDescriptor, json } from '@vercel/remix';
 import { IntlProvider } from 'react-intl';
 
 import '~/globals';

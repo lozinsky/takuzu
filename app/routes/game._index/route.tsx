@@ -1,5 +1,5 @@
-import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { json } from '@vercel/remix';
 
 import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';

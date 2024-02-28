@@ -1,4 +1,4 @@
-/// <reference types="@remix-run/node" />
+/// <reference types="@vercel/remix" />
 /// <reference types="vite/client" />
 
 declare global {
@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-declare module '@remix-run/node' {
+declare module '@vercel/remix' {
   interface AppLoadContext {
     env?: {
       readonly SESSION_SECRET: string;

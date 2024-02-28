@@ -1,5 +1,5 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/node';
 import { type ClientLoaderFunctionArgs, useLoaderData, useLocation, useParams } from '@remix-run/react';
+import { type LoaderFunctionArgs, json } from '@vercel/remix';
 
 import { GamePraiseModal } from '~/components/game-praise-modal';
 import { Game } from '~/components/ui/game';

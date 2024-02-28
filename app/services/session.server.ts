@@ -1,4 +1,4 @@
-import { type AppLoadContext, type Session, createCookieSessionStorage } from '@remix-run/node';
+import { type AppLoadContext, type Session, createCookieSessionStorage } from '@vercel/remix';
 
 import { type SessionData } from '~/services/session';
 

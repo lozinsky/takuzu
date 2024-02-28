@@ -32,62 +32,8 @@ jobs:
 
       - name: Build
         run: |
-          mkdir -p .vercel/output
-          mkdir -p .vercel/output/static
-          mkdir -p .vercel/output/functions/index.func
-
-          cat > app/entry.server.tsx << EOF
-          import { RemixServer } from '@remix-run/react';
-          import { type EntryContext, handleRequest } from '@vercel/remix';
-
-          export default function (
-            request: Request,
-            responseStatusCode: number,
-            responseHeaders: Headers,
-            remixContext: EntryContext,
-          ) {
-            const remixServer = <RemixServer context={remixContext} url={request.url} />;
-
-            return handleRequest(request, responseStatusCode, responseHeaders, remixServer);
-          }
-          EOF
-
-          cat > index.js << EOF
-          import { createRequestHandler } from '@remix-run/node';
-
-          import * as build from './build/server/index.js';
-
-          const requestHandler = createRequestHandler(build, process.env.NODE_ENV);
-
-          export default function handleRequest(request) {
-            return requestHandler(request, { env: { SESSION_SECRET: process.env.SESSION_SECRET } });
-          }
-          EOF
-
-          cat > .vercel/output/config.json << EOF
-          {
-            "version": 3,
-            "routes": [
-              { "src": "^/assets/(.*)$", "headers": { "cache-control": "public, immutable, max-age=31536000" } },
-              { "handle": "filesystem" },
-              { "src": ".*", "dest": "/" }
-            ]
-          }
-          EOF
-
-          cat > .vercel/output/functions/index.func/.vc-config.json << EOF
-          {
-            "runtime": "edge",
-            "entrypoint": "index.js"
-          }
-          EOF
-
-          npm run build
-
-          cp -r build/client/. .vercel/output/static
-          rm -rf .vercel/output/static/.vite
-
-          npx esbuild index.js --outfile=.vercel/output/functions/index.func/index.js --define:process.env.NODE_ENV='"production"' --alias:@remix-run/node=@vercel/remix --bundle --minify --format=esm
+          npx vercel pull --yes --token=${{ secrets.VERCEL_TOKEN }}
+          npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Vercel deploy
         run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

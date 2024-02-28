@@ -2,7 +2,7 @@
 
 import { type IntlShape, createIntl, createIntlCache } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';
-import { type Session } from '@remix-run/node';
+import { type Session } from '@vercel/remix';
 import { parseAcceptLanguage } from 'intl-parse-accept-language';
 
 import en from '~/messages/en.json';

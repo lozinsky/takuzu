@@ -1,5 +1,5 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { type LoaderFunctionArgs, json } from '@vercel/remix';
 import { FormattedMessage } from 'react-intl';
 
 import { BrandLogo } from '~/components/ui/brand-logo';

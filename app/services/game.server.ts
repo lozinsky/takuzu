@@ -1,4 +1,4 @@
-import { type Session } from '@remix-run/node';
+import { type Session } from '@vercel/remix';
 
 import { type Game, isBoardSolved, parseBoard } from '~/services/game';
 import { type SessionData } from '~/services/session';
