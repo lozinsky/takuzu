@@ -16,6 +16,10 @@ import { getErrorResponse } from '~/shared/http';
 
 import root from './root.css?url';
 
+export const config = {
+  runtime: 'edge',
+};
+
 export async function loader({ request }: LoaderFunctionArgs) {
   try {
     const session = await getSession(request);
