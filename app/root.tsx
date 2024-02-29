@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
+import { Analytics } from '@vercel/analytics/react';
 import { type LinkDescriptor, type LoaderFunctionArgs, type MetaArgs, type MetaDescriptor, json } from '@vercel/remix';
 import { IntlProvider } from 'react-intl';
 
@@ -73,6 +74,7 @@ export default function Root() {
         </IntlProvider>
         <ScrollRestoration />
         <Scripts />
+        <Analytics debug={false} />
       </body>
     </html>
   );
