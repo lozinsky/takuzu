@@ -72,6 +72,10 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
     return new BoardLine(this.#cells.toReversed());
   }
 
+  slice(start: number, end?: number) {
+    return this.#cells.slice(start, end);
+  }
+
   toDoubleRotation() {
     return DoubleMatrixRotation.run<BoardLine>(this);
   }

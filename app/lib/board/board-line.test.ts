@@ -150,6 +150,21 @@ test.each([
 });
 
 test.each([
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), -1, undefined],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, undefined],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 1, undefined],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 2, undefined],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 3, undefined],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, -1],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, 0],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, 1],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, 2],
+  [BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]), 0, 3],
+])('slices board line', (line, start, end) => {
+  expect(line.slice(start, end)).toMatchSnapshot();
+});
+
+test.each([
   BoardLine.create([BoardCellState.B, BoardCellState.B, BoardCellState.R, BoardCellState.E]),
   BoardLine.create([BoardCellState.B, BoardCellState.R, BoardCellState.E]),
 ])('returns board line value of', (line) => {

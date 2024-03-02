@@ -295,6 +295,101 @@ test.each([
 });
 
 test.each([
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    -1,
+    undefined,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    undefined,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    1,
+    undefined,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    2,
+    undefined,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    3,
+    undefined,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    -1,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    0,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    1,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    2,
+  ],
+  [
+    Board.create([
+      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ]),
+    0,
+    3,
+  ],
+])('slices board', (board, start, end) => {
+  expect(board.slice(start, end)).toMatchSnapshot();
+});
+
+test.each([
   Board.create([
     [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
     [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],

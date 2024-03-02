@@ -205,3 +205,62 @@ exports[`returns length of board state in board line 3`] = `2`;
 exports[`rotates board line 1`] = `[⬜] [🟥] [🟦] [🟦]`;
 
 exports[`rotates board line 2`] = `[⬜] [🟥] [🟦]`;
+
+exports[`slices board line 1`] = `
+[
+  [⬜],
+]
+`;
+
+exports[`slices board line 2`] = `
+[
+  [🟦],
+  [🟥],
+  [⬜],
+]
+`;
+
+exports[`slices board line 3`] = `
+[
+  [🟥],
+  [⬜],
+]
+`;
+
+exports[`slices board line 4`] = `
+[
+  [⬜],
+]
+`;
+
+exports[`slices board line 5`] = `[]`;
+
+exports[`slices board line 6`] = `
+[
+  [🟦],
+  [🟥],
+]
+`;
+
+exports[`slices board line 7`] = `[]`;
+
+exports[`slices board line 8`] = `
+[
+  [🟦],
+]
+`;
+
+exports[`slices board line 9`] = `
+[
+  [🟦],
+  [🟥],
+]
+`;
+
+exports[`slices board line 10`] = `
+[
+  [🟦],
+  [🟥],
+  [⬜],
+]
+`;

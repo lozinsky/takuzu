@@ -371,3 +371,62 @@ exports[`rotates board 4`] = `0`;
 exports[`rotates board 5`] = ``;
 
 exports[`rotates board 6`] = `0`;
+
+exports[`slices board 1`] = `
+[
+  [🟥] [🟦] [🟦],
+]
+`;
+
+exports[`slices board 2`] = `
+[
+  [🟦] [🟥] [🟦],
+  [🟥] [🟦] [🟥],
+  [🟥] [🟦] [🟦],
+]
+`;
+
+exports[`slices board 3`] = `
+[
+  [🟥] [🟦] [🟥],
+  [🟥] [🟦] [🟦],
+]
+`;
+
+exports[`slices board 4`] = `
+[
+  [🟥] [🟦] [🟦],
+]
+`;
+
+exports[`slices board 5`] = `[]`;
+
+exports[`slices board 6`] = `
+[
+  [🟦] [🟥] [🟦],
+  [🟥] [🟦] [🟥],
+]
+`;
+
+exports[`slices board 7`] = `[]`;
+
+exports[`slices board 8`] = `
+[
+  [🟦] [🟥] [🟦],
+]
+`;
+
+exports[`slices board 9`] = `
+[
+  [🟦] [🟥] [🟦],
+  [🟥] [🟦] [🟥],
+]
+`;
+
+exports[`slices board 10`] = `
+[
+  [🟦] [🟥] [🟦],
+  [🟥] [🟦] [🟥],
+  [🟥] [🟦] [🟦],
+]
+`;

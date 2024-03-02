@@ -5,11 +5,7 @@ export function selectThreeOrMoreIdenticalSequentialCells(target: BoardLine) {
     if (head.isFilled) {
       const cells = [head];
 
-      for (const [end, cell] of target.entries()) {
-        if (start >= end) {
-          continue;
-        }
-
+      for (const cell of target.slice(start + 1)) {
         if (!head.equals(cell)) {
           break;
         }

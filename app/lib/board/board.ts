@@ -125,6 +125,10 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixRota
     return new Board(orientation, lines);
   }
 
+  slice(start: number, end?: number) {
+    return this.#lines.slice(start, end);
+  }
+
   toDoubleRotation() {
     return DoubleMatrixRotation.run<Board>(this);
   }
