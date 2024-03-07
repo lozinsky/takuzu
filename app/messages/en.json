@@ -2,6 +2,7 @@
   "metaTitle": "Takuzu",
   "metaDescription": "A little logic game",
   "headerBackLabel": "Back",
+  "headerSourceCodeLabel": "Source code",
   "headerSettingsLabel": "Settings",
   "menuGameLink": "New game",
   "menuGameContinueLink": "Continue",

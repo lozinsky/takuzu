@@ -2,6 +2,7 @@
   "metaTitle": "Takuzu",
   "metaDescription": "Небольшая логическая игра",
   "headerBackLabel": "Назад",
+  "headerSourceCodeLabel": "Исходный код",
   "headerSettingsLabel": "Настройки",
   "menuGameLink": "Новая игра",
   "menuGameContinueLink": "Продолжить",
