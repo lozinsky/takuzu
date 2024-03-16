@@ -5,9 +5,9 @@ import { IntlProvider } from 'react-intl';
 
 import '~/globals';
 
-import { Layout } from '~/components/ui/layout';
-import { LayoutContent } from '~/components/ui/layout-content';
-import { LayoutHeader } from '~/components/ui/layout-header';
+import { RootLayout } from '~/components/ui/root-layout';
+import { RootLayoutContent } from '~/components/ui/root-layout-content';
+import { RootLayoutHeader } from '~/components/ui/root-layout-header';
 import { getAppearance } from '~/services/appearance.server';
 import { type Messages } from '~/services/intl';
 import { getIntl } from '~/services/intl.server';
@@ -69,12 +69,12 @@ export default function Root() {
       </head>
       <body className='h-dvh bg-base-100 text-base-content'>
         <IntlProvider locale={intl.locale} messages={intl.messages}>
-          <Layout>
-            <LayoutHeader />
-            <LayoutContent>
+          <RootLayout>
+            <RootLayoutHeader />
+            <RootLayoutContent>
               <Outlet />
-            </LayoutContent>
-          </Layout>
+            </RootLayoutContent>
+          </RootLayout>
         </IntlProvider>
         <ScrollRestoration />
         <Scripts />

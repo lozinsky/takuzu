@@ -8,7 +8,7 @@ import { Button } from '~/components/ui/button';
 import { ButtonLink } from '~/components/ui/button-link';
 import { useReferrerPath } from '~/hooks/use-referrer-path';
 
-export function LayoutHeader() {
+export function RootLayoutHeader() {
   const location = useLocation();
   const referrerPath = useReferrerPath();
   const parentPath = useResolvedPath('..', { relative: 'path' });
