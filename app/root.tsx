@@ -8,11 +8,13 @@ import '~/globals';
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';
+import { RandomSeedContext } from '~/hooks/use-random';
 import { getAppearance } from '~/services/appearance.server';
 import { type Messages } from '~/services/intl';
 import { getIntl } from '~/services/intl.server';
 import { getSession } from '~/services/session.server';
 import { getErrorResponse } from '~/shared/http';
+import { Random } from '~/shared/random';
 
 import root from './root.css?url';
 
@@ -27,11 +29,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const intl = getIntl(session, request.headers);
     const title = intl.formatMessage({ id: 'metaTitle' });
     const description = intl.formatMessage({ id: 'metaDescription' });
+    const random = Random.create();
 
     return json({
       appearance,
       intl: { locale: intl.locale, messages: intl.messages as Messages },
       meta: { description, title },
+      random: { seed: random.seed },
     });
   } catch (error) {
     throw getErrorResponse(error);
@@ -57,7 +61,7 @@ export function links(): LinkDescriptor[] {
 }
 
 export default function Root() {
-  const { appearance, intl } = useLoaderData<typeof loader>();
+  const { appearance, intl, random } = useLoaderData<typeof loader>();
 
   return (
     <html data-appearance={appearance} lang={intl.locale}>
@@ -69,12 +73,14 @@ export default function Root() {
       </head>
       <body className='h-dvh bg-base-100 text-base-content'>
         <IntlProvider locale={intl.locale} messages={intl.messages}>
-          <RootLayout>
-            <RootLayoutHeader />
-            <RootLayoutContent>
-              <Outlet />
-            </RootLayoutContent>
-          </RootLayout>
+          <RandomSeedContext.Provider value={random.seed}>
+            <RootLayout>
+              <RootLayoutHeader />
+              <RootLayoutContent>
+                <Outlet />
+              </RootLayoutContent>
+            </RootLayout>
+          </RandomSeedContext.Provider>
         </IntlProvider>
         <ScrollRestoration />
         <Scripts />

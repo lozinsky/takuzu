@@ -1,8 +1,13 @@
 import { GameBoard } from '~/components/ui/game-board';
 import { GameBoardCell } from '~/components/ui/game-board-cell';
-import { type BoardCellState } from '~/lib/board';
+import { useRandom } from '~/hooks/use-random';
+import { BoardCellState } from '~/lib/board';
+import { shuffle } from '~/shared/random';
 
-export function BrandLogo({ states }: { states: BoardCellState[] }) {
+export function BrandLogo() {
+  const random = useRandom();
+  const states = shuffle([BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.E], random);
+
   return (
     <div className='mx-auto flex w-2/3 justify-center'>
       <GameBoard size={states.length / 2}>

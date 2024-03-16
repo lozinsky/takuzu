@@ -4,8 +4,9 @@ import { ButtonLink } from '~/components/ui/button-link';
 import { GameModal } from '~/components/ui/game-modal';
 import { GameModalFooter } from '~/components/ui/game-modal-footer';
 import { GameModalHeader } from '~/components/ui/game-modal-header';
+import { useRandom } from '~/hooks/use-random';
 import { type Messages } from '~/services/intl';
-import { Random, sample } from '~/shared/random';
+import { sample } from '~/shared/random';
 
 const PRAISE_MESSAGE_IDS: ReadonlyArray<keyof Messages> = [
   'gamePraiseMessage0',
@@ -30,11 +31,13 @@ const PRAISE_MESSAGE_IDS: ReadonlyArray<keyof Messages> = [
   'gamePraiseMessage19',
 ];
 
-export function GamePraiseModal({ seed, size }: { seed: number; size?: number }) {
+export function GamePraiseModal({ size }: { size?: number }) {
+  const random = useRandom();
+
   return (
     <GameModal>
       <GameModalHeader>
-        <FormattedMessage id={sample(PRAISE_MESSAGE_IDS, new Random(seed))} />
+        <FormattedMessage id={sample(PRAISE_MESSAGE_IDS, random)} />
       </GameModalHeader>
       <GameModalFooter>
         {size !== undefined && (
