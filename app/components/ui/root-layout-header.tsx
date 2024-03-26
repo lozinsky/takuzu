@@ -19,7 +19,7 @@ export function RootLayoutHeader() {
         {location.pathname === parentPath.pathname ? (
           <AriaLabelled>
             <Button asChild size='icon' variant='ghost'>
-              <a href='https://github.com/lozinsky/takuzu' rel='noreferrer' target='_blank'>
+              <a href='https://github.com/lozinsky/binairo' rel='noreferrer' target='_blank'>
                 <Code aria-hidden />
                 <AriaLabel>
                   <FormattedMessage id='headerSourceCodeLabel' />
