@@ -1,110 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`returns error response 1`] = `
-Response {
-  Symbol(realm): {
-    "settingsObject": {},
-  },
-  Symbol(state): {
-    "aborted": false,
-    "body": {
-      "length": 7,
-      "source": "Message",
-      "stream": ReadableStream {
-        Symbol(kType): "ReadableStream",
-        Symbol(kState): {
-          "controller": ReadableStreamDefaultController {
-            Symbol(kType): "ReadableStreamDefaultController",
-            Symbol(kState): {
-              "cancelAlgorithm": [Function],
-              "closeRequested": false,
-              "highWaterMark": 1,
-              "pullAgain": false,
-              "pullAlgorithm": [Function],
-              "pulling": false,
-              "queue": [],
-              "queueTotalSize": 0,
-              "sizeAlgorithm": [Function],
-              "started": false,
-              "stream": ReadableStream {
-                Symbol(kType): "ReadableStream",
-                Symbol(kState): [Circular],
-                Symbol(nodejs.webstream.isClosedPromise): {
-                  "promise": Promise {},
-                  "reject": [Function],
-                  "resolve": [Function],
-                },
-                Symbol(nodejs.webstream.controllerErrorFunction): [Function],
-              },
-            },
-          },
-          "disturbed": false,
-          "reader": undefined,
-          "state": "readable",
-          "storedError": undefined,
-          "stream": undefined,
-          "transfer": {
-            "port1": undefined,
-            "port2": undefined,
-            "promise": undefined,
-            "writable": undefined,
-          },
-        },
-        Symbol(nodejs.webstream.isClosedPromise): {
-          "promise": Promise {},
-          "reject": [Function],
-          "resolve": [Function],
-        },
-        Symbol(nodejs.webstream.controllerErrorFunction): [Function],
-      },
-    },
-    "cacheState": "",
-    "headersList": HeadersList {
-      "cookies": null,
-      Symbol(headers map): Map {
-        "content-type" => {
-          "name": "content-type",
-          "value": "text/plain;charset=UTF-8",
-        },
-      },
-      Symbol(headers map sorted): null,
-    },
-    "rangeRequested": false,
-    "requestIncludesCredentials": false,
-    "status": 400,
-    "statusText": "",
-    "timingAllowPassed": false,
-    "timingInfo": null,
-    "type": "default",
-    "urlList": [],
-  },
-  Symbol(headers): Headers {
-    Symbol(headers list): HeadersList {
-      "cookies": null,
-      Symbol(headers map): Map {
-        "content-type" => {
-          "name": "content-type",
-          "value": "text/plain;charset=UTF-8",
-        },
-      },
-      Symbol(headers map sorted): null,
-    },
-    Symbol(guard): "response",
-    Symbol(realm): {
-      "settingsObject": {},
-    },
-  },
+exports[`returns error 1`] = `[Error: Message]`;
+
+exports[`returns error 2`] = `"Message"`;
+
+exports[`returns error 3`] = `""`;
+
+exports[`returns error 4`] = `0`;
+
+exports[`returns error 5`] = `null`;
+
+exports[`returns error 6`] = `undefined`;
+
+exports[`returns response 1`] = `
+{
+  "message": "Message",
+  "status": 400,
 }
 `;
-
-exports[`returns error response 2`] = `[Error: Message]`;
-
-exports[`returns error response 3`] = `"Message"`;
-
-exports[`returns error response 4`] = `""`;
-
-exports[`returns error response 5`] = `0`;
-
-exports[`returns error response 6`] = `null`;
-
-exports[`returns error response 7`] = `undefined`;

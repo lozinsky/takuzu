@@ -47,14 +47,14 @@ export class DoubleMatrixRotation<T extends MatrixRotatable<T>> implements Matri
   }
 }
 
-export class QuadrupleMatrixRotation<T extends MatrixRotatable<T> & MatrixReversible<T>> implements MatrixRotation<T> {
+export class QuadrupleMatrixRotation<T extends MatrixReversible<T> & MatrixRotatable<T>> implements MatrixRotation<T> {
   readonly #target: T;
 
   constructor(target: T) {
     this.#target = target;
   }
 
-  static run<T extends MatrixRotatable<T> & MatrixReversible<T>>(target: T) {
+  static run<T extends MatrixReversible<T> & MatrixRotatable<T>>(target: T) {
     return run(new this(target));
   }
 

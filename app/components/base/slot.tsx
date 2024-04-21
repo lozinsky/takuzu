@@ -15,7 +15,7 @@ import { SlotRoot } from '~/components/base/slot-root';
 import { useMergedRef } from '~/hooks/use-merged-ref';
 import { expectToSatisfy } from '~/shared/expect';
 
-type TargetElement = ReactElement<HTMLAttributes<HTMLElement>> & { ref?: Ref<HTMLElement> };
+type TargetElement = { ref?: Ref<HTMLElement> } & ReactElement<HTMLAttributes<HTMLElement>>;
 
 type RootElement = ReactElement<ComponentProps<typeof SlotRoot>>;
 
