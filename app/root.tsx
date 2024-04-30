@@ -1,4 +1,12 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  type ShouldRevalidateFunctionArgs,
+  useLoaderData,
+} from '@remix-run/react';
 import { Analytics } from '@vercel/analytics/react';
 import { type LinkDescriptor, type LoaderFunctionArgs, type MetaArgs, type MetaDescriptor, json } from '@vercel/remix';
 import { IntlProvider } from 'react-intl';
@@ -21,6 +29,14 @@ import root from './root.css?url';
 export const config = {
   runtime: 'edge',
 };
+
+export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
+  if (formAction?.startsWith('/settings')) {
+    return defaultShouldRevalidate;
+  }
+
+  return false;
+}
 
 export async function loader({ request }: LoaderFunctionArgs) {
   try {
