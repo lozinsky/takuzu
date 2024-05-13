@@ -1,5 +1,5 @@
-import { type ClientLoaderFunctionArgs, useLocation, useParams } from '@remix-run/react';
-import { type LoaderFunctionArgs } from '@vercel/remix';
+import { unstable_defineClientLoader as defineClientLoader, useLocation, useParams } from '@remix-run/react';
+import { unstable_defineLoader as defineLoader } from '@vercel/remix';
 import { useMemo } from 'react';
 
 import { GamePraiseModal } from '~/components/game-praise-modal';
@@ -16,27 +16,25 @@ import { getErrorResponse } from '~/shared/http';
 
 import { GameActionsContent, GameBoardContent, GameTipContent } from './components';
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export const loader = defineLoader(async ({ params, request, response }) => {
   try {
     const session = await getSession(request);
 
     setGame(session, { board: parseBoard(expectToBeDefined(params.board)) });
 
-    return new Response(null, {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    });
+    response.headers.set('Set-Cookie', await commitSession(session));
+
+    return null;
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
-export function clientLoader({ serverLoader }: ClientLoaderFunctionArgs) {
-  void serverLoader();
+export const clientLoader = defineClientLoader(({ serverLoader }) => {
+  void serverLoader<typeof loader>();
 
   return null;
-}
+});
 
 export default function Route() {
   const params = useParams();

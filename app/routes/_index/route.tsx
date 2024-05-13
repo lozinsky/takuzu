@@ -1,5 +1,5 @@
 import { useLoaderData } from '@remix-run/react';
-import { type LoaderFunctionArgs, json } from '@vercel/remix';
+import { unstable_defineLoader as defineLoader } from '@vercel/remix';
 import { FormattedMessage } from 'react-intl';
 
 import { BrandLogo } from '~/components/ui/brand-logo';
@@ -11,18 +11,18 @@ import { getGame } from '~/services/game.server';
 import { getSession } from '~/services/session.server';
 import { getErrorResponse } from '~/shared/http';
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export const loader = defineLoader(async ({ request }) => {
   try {
     const session = await getSession(request);
     const game = getGame(session);
 
-    return json({
+    return {
       board: game === null ? null : game.board.toString(),
-    });
+    };
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
 export default function Route() {
   const { board } = useLoaderData<typeof loader>();

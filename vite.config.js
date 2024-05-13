@@ -4,7 +4,7 @@ import { vercelPreset } from '@vercel/remix/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-installGlobals();
+installGlobals({ nativeFetch: true });
 
 export default defineConfig({
   build: { cssMinify: true },
@@ -13,6 +13,7 @@ export default defineConfig({
       ? null
       : remix({
           future: {
+            unstable_singleFetch: true,
             v3_fetcherPersist: true,
             v3_relativeSplatPath: true,
             v3_throwAbortReason: true,

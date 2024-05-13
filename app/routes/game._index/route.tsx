@@ -1,5 +1,5 @@
 import { useLoaderData } from '@remix-run/react';
-import { json } from '@vercel/remix';
+import { unstable_defineLoader as defineLoader } from '@vercel/remix';
 
 import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';
@@ -7,13 +7,13 @@ import { MenuGroup } from '~/components/ui/menu-group';
 import { MenuItem } from '~/components/ui/menu-item';
 import { getErrorResponse } from '~/shared/http';
 
-export function loader() {
+export const loader = defineLoader(() => {
   try {
-    return json({ sizes: [4, 6, 8, 10, 12] });
+    return { sizes: [4, 6, 8, 10, 12] };
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
 export default function Route() {
   const { sizes } = useLoaderData<typeof loader>();

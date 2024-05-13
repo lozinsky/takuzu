@@ -10,12 +10,12 @@ class AssertionError extends Error {
   }
 }
 
-test('returns response', async () => {
+test('returns response', () => {
   const candidate = getErrorResponse(new AssertionError('Message'));
 
   assert(candidate instanceof Response);
 
-  expect({ message: await candidate.text(), status: candidate.status }).toMatchSnapshot();
+  expect({ status: candidate.status, statusText: candidate.statusText }).toMatchSnapshot();
 });
 
 test.each([new Error('Message'), 'Message', '', 0, null, undefined])('returns error', (value) => {

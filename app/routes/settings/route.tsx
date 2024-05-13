@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useSubmit } from '@remix-run/react';
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@vercel/remix';
+import { unstable_defineAction as defineAction, unstable_defineLoader as defineLoader, redirect } from '@vercel/remix';
 import { type FormEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -20,19 +20,19 @@ import { getErrorResponse } from '~/shared/http';
 
 import { MESSAGE_ID_BY_APPEARANCE, MESSAGE_RAW_BY_LOCALE } from './constants';
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export const loader = defineLoader(async ({ request }) => {
   try {
     const session = await getSession(request);
     const appearance = getAppearance(session);
     const locale = getLocale(session, request.headers);
 
-    return json({ appearance, locale });
+    return { appearance, locale };
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
-export async function action({ request }: ActionFunctionArgs) {
+export const action = defineAction(async ({ request }) => {
   try {
     const [session, formData] = await Promise.all([getSession(request), request.formData()]);
 
@@ -47,7 +47,7 @@ export async function action({ request }: ActionFunctionArgs) {
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
 export default function Route() {
   const { appearance: selectedAppearance, locale: selectedLocale } = useLoaderData<typeof loader>();

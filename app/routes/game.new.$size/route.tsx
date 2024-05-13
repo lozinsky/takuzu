@@ -1,10 +1,10 @@
-import { type LoaderFunctionArgs, redirect } from '@vercel/remix';
+import { unstable_defineLoader as defineLoader, redirect } from '@vercel/remix';
 
 import { generateBoard } from '~/services/game';
 import { expectNotToBeNaN } from '~/shared/expect';
 import { getErrorResponse } from '~/shared/http';
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export const loader = defineLoader(async ({ params, request }) => {
   try {
     const url = new URL(request.url);
     const board = await generateBoard(expectNotToBeNaN(Number(params.size)), {
@@ -20,4 +20,4 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});

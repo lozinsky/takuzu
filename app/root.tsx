@@ -1,6 +1,7 @@
 import {
   Links,
   Meta,
+  type MetaArgs_SingleFetch as MetaArgs,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -8,7 +9,7 @@ import {
   useLoaderData,
 } from '@remix-run/react';
 import { Analytics } from '@vercel/analytics/react';
-import { type LinkDescriptor, type LoaderFunctionArgs, type MetaArgs, type MetaDescriptor, json } from '@vercel/remix';
+import { type LinkDescriptor, type MetaDescriptor, unstable_defineLoader as defineLoader } from '@vercel/remix';
 import { IntlProvider } from 'react-intl';
 
 import '~/globals';
@@ -38,7 +39,7 @@ export function shouldRevalidate({ defaultShouldRevalidate, formAction }: Should
   return false;
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export const loader = defineLoader(async ({ request }) => {
   try {
     const session = await getSession(request);
     const appearance = getAppearance(session);
@@ -47,16 +48,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const description = intl.formatMessage({ id: 'metaDescription' });
     const random = Random.create();
 
-    return json({
+    return {
       appearance,
       intl: { locale: intl.locale, messages: intl.messages as Messages },
       meta: { description, title },
       random: { seed: random.seed },
-    });
+    };
   } catch (error) {
     throw getErrorResponse(error);
   }
-}
+});
 
 export function meta({ data }: MetaArgs<typeof loader>): MetaDescriptor[] {
   if (data === undefined) {

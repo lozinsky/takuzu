@@ -14,7 +14,7 @@ exports[`returns error 6`] = `undefined`;
 
 exports[`returns response 1`] = `
 {
-  "message": "Message",
   "status": 400,
+  "statusText": "Message",
 }
 `;
