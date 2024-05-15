@@ -13,8 +13,8 @@ import { type BoardCell, type BoardCellState } from './board-cell';
 import { BoardLine, type BoardLineValue } from './board-line';
 
 export enum BoardOrientation {
-  Landscape = 0,
-  Portrait = 1,
+  Landscape,
+  Portrait,
 }
 
 const NEXT_BOARD_ORIENTATION_BY_PREV_BOARD_ORIENTATION: Readonly<Record<BoardOrientation, BoardOrientation>> = {

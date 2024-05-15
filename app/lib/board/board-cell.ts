@@ -1,6 +1,6 @@
 export enum BoardCellKind {
-  Fixed = 0,
-  Regular = 1,
+  Fixed,
+  Regular,
 }
 
 export enum BoardCellState {

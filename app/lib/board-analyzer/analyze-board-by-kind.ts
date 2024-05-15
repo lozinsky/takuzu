@@ -13,19 +13,19 @@ import { MatrixSelection, type MatrixSelectionPosition } from '~/lib/matrix';
 import { type Random, shuffle } from '~/shared/random';
 
 export enum BoardAnalyzerReviewKind {
-  Correction = 0,
-  Suggestion = 1,
+  Correction,
+  Suggestion,
 }
 
 export enum BoardAnalyzerReviewReason {
-  LineCanBeEqualToAnother = 0,
-  LineIncludesAnother = 1,
-  LineIsEqualToOthers = 2,
-  LineIsFilledAndImbalanced = 3,
-  LineIsUnfilledAndBalanced = 4,
-  MiddleCellBetweenTwoIdentical = 5,
-  NextCellAfterTwoIdentical = 6,
-  ThreeOrMoreIdenticalSequentialCells = 7,
+  LineCanBeEqualToAnother,
+  LineIncludesAnother,
+  LineIsEqualToOthers,
+  LineIsFilledAndImbalanced,
+  LineIsUnfilledAndBalanced,
+  MiddleCellBetweenTwoIdentical,
+  NextCellAfterTwoIdentical,
+  ThreeOrMoreIdenticalSequentialCells,
 }
 
 export interface BoardAnalyzerReviewPayload {
