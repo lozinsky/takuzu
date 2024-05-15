@@ -1,6 +1,5 @@
 import { unstable_defineClientLoader as defineClientLoader, useLocation, useParams } from '@remix-run/react';
 import { unstable_defineLoader as defineLoader } from '@vercel/remix';
-import { useMemo } from 'react';
 
 import { GamePraiseModal } from '~/components/game-praise-modal';
 import { Game } from '~/components/ui/game';
@@ -40,14 +39,11 @@ export default function Route() {
   const params = useParams();
   const location = useLocation();
   const random = useRandom();
-  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
-  const board = useMemo(() => parseBoard(expectToBeDefined(params.board)), [params.board]);
+  const searchParams = new URLSearchParams(location.search);
+  const board = parseBoard(expectToBeDefined(params.board));
   const boardSize = board.length;
   const boardSolved = isBoardSolved(board);
-  const boardAnalyzerReview = useMemo(
-    () => (searchParams.has('analyze') ? analyzeBoard(board, random) : undefined),
-    [board, random, searchParams],
-  );
+  const boardAnalyzerReview = searchParams.has('analyze') ? analyzeBoard(board, random) : undefined;
   const boardAnalyzerReviewPayloadPositions = boardAnalyzerReview?.payload.positions ?? [];
 
   return (

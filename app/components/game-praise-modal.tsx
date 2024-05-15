@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { ButtonLink } from '~/components/ui/button-link';
@@ -34,7 +33,7 @@ const PRAISE_MESSAGE_IDS: ReadonlyArray<keyof Messages> = [
 
 export function GamePraiseModal({ size }: { size?: number }) {
   const random = useRandom();
-  const praiseMessageId = useMemo(() => sample(PRAISE_MESSAGE_IDS, random), [random]);
+  const praiseMessageId = sample(PRAISE_MESSAGE_IDS, random);
 
   return (
     <GameModal>
